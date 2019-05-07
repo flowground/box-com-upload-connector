@@ -1,0 +1,56 @@
+{
+    "type": "object",
+    "properties": {
+        "SESSION_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "Digest": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "attributes": {
+                    "additionalProperties": {
+                        "type": "object"
+                    },
+                    "description": "Optional. An array of attributes to set on the created file. See https://box-content.readme.io/reference#file-object",
+                    "type": "object"
+                },
+                "parts": {
+                    "description": "An arrayof Part objects. MUST be ordered by offset.",
+                    "items": {
+                        "properties": {
+                            "offset": {
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "part_id": {
+                                "type": "string"
+                            },
+                            "sha1": {
+                                "type": "string"
+                            },
+                            "size": {
+                                "format": "int64",
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "If_Non_Match": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

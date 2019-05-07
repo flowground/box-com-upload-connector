@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "SESSION_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        }
+    }
+}

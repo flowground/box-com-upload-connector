@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "type": "string",
+            "format": "binary"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

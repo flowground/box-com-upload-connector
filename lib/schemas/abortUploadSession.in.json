@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "SESSION_ID": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

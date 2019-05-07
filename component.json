@@ -1,0 +1,214 @@
+{
+    "title": "Box 2.0 Uploads",
+    "description": "The Box Uploads API allows users to add a new file or add a new file version in the same way as uploading file.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/box.com/upload/2.0/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://upload.box.com/api/2.0",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "OAuth2Security": {
+                "label": "OAuth2Security",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://account.box.com/api/oauth2/authorize",
+            "token_uri": "https://api.box.com/oauth2/token"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "uploadFile": {
+            "main": "./lib/actions/uploadFile.js",
+            "title": "Upload File",
+            "description": "Use the Uploads API to allow users to add a new file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/uploadFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createUploadSession": {
+            "main": "./lib/actions/createUploadSession.js",
+            "title": "Create File Upload Session",
+            "description": "Use the Uploads API to create a new session to upload a new file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createUploadSession.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "abortUploadSession": {
+            "main": "./lib/actions/abortUploadSession.js",
+            "title": "Abort Upload Session",
+            "description": "Abort the upload session and discard all data uploaded. This cannot be reversed.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/abortUploadSession.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getUploadSession": {
+            "main": "./lib/actions/getUploadSession.js",
+            "title": "Upload Session Details",
+            "description": "Return the information about this session.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getUploadSession.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "uploadPart": {
+            "main": "./lib/actions/uploadPart.js",
+            "title": "Upload Part",
+            "description": "Upload a part of the file to this session.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/octet-stream": "application/octet-stream",
+                        "application/json": "application/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/uploadPart.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "commitUploadSession": {
+            "main": "./lib/actions/commitUploadSession.js",
+            "title": "Commit Upload",
+            "description": "Create a Box file comprised of the uploaded parts.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/commitUploadSession.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "listParts": {
+            "main": "./lib/actions/listParts.js",
+            "title": "List Parts",
+            "description": "Return the list of parts uploaded so far for this session.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/listParts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "uploadFileVersion": {
+            "main": "./lib/actions/uploadFileVersion.js",
+            "title": "Upload File Version",
+            "description": "This method is used to upload a new version of an existing file in a user's account. ",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/uploadFileVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createUploadSessionNewVersion": {
+            "main": "./lib/actions/createUploadSessionNewVersion.js",
+            "title": "Create File Upload Session",
+            "description": "Use the Uploads API to create a new session to upload a new version of existing file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createUploadSessionNewVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

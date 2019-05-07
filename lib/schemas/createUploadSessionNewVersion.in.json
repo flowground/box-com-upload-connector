@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "FILE_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "file_name": {
+                    "description": "Name of new file",
+                    "type": "string"
+                },
+                "file_size": {
+                    "description": "The total number of bytes in the file to be uploaded",
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

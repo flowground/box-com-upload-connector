@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "SESSION_ID": {
+            "required": true,
+            "type": "string"
+        },
+        "Digest": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "format": "byte",
+            "type": "string"
+        },
+        "Content_Range": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
